@@ -1,0 +1,14 @@
+header {
+    text-align: center;
+}
+
+main div h2 {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+#timerCountdown {
+    text-align: center;
+}
