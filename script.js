@@ -1,35 +1,3 @@
-// NOTES / Workspace //
-
-// var highScore needs to be an object that keeps the top five initials and scores [0-4] (highest to low) with a new entry being added in the line appropriatly if needed
-// highScores screen
-    // var initials = prompt("Please enter your initials")
-    // initials + score = VAV 250
-// game over event when time runs out OR if all questions are answered >> highscore screen
-
-// console.log ("=========")
-// console.log(questionSets[1]); 
-// var secondQuestionSet = questionSets[1] // this selects the question-set and saves it as a var
-// console.log(secondQuestionSet);
-// console.log ("=========")
-// console.log(Object.keys(secondQuestionSet)[0]); // this selects the key within the saved question-set var
-// console.log ("=========")
-// console.log(Object.values(secondQuestionSet)[0]); // this selects question within the saved question-set var
-// console.log ("=========")
-// var choices2Array = Object.values(secondQuestionSet)[1] // this selects the choices array of the saved question-set and saves it as a var
-// console.log(choices2Array); 
-// console.log ("=========")
-// console.log(choices2Array[0]); // entering number in bracket selects one of the multiple choices 
-// console.log ("=========")
-// var i = Math.floor(Math.random() * 10) // this picks a random number between 0-9 
-// console.log(i)
-// console.log ("=========")
-// var ans = Object.values(secondQuestionSet)[2]
-// console.log (ans)
-
-
-
-
-
     // Grabbing HTML Elements //
 var countdownEl = document.querySelector("#timerCountdown")
 var startBtn = document.querySelector("button")
@@ -76,7 +44,7 @@ resetQuiz();
 
     // Start Button Event Listener & Quiz Countdown Function //
 startBtn.addEventListener("click", function () {
-    var timeLeft = 1;
+    var timeLeft = 3;
 
     startBtn.style.display = "none"
 
@@ -116,7 +84,7 @@ function quizTimer() {
     , 1000);
 }
 
-    // Question Sets >> credit: w3schools js quiz (https://www.w3schools.com/quiztest/quiztest.asp?qtest=JS) //
+    // Question Sets >> Credit: w3schools js quiz (https://www.w3schools.com/quiztest/quiztest.asp?qtest=JS) //
 var questionSets = [ 
     Q1 = {
         question1: "Inside which HTML element do we put the JavaScript?",
@@ -243,7 +211,7 @@ submitBtn.addEventListener("click", function(){
     }
 })
 
-    // Right & Wrong Effect Function //
+    // Wrong & Right Effect Functions //
 function wrongHighlight(body){
     var orig = body.style.backgroundColor;
     body.style.backgroundColor = '#FF0000';
@@ -259,7 +227,7 @@ function rightHighlight(body){
     }, 375);
 }
 
-    // End/Highscore Function //
+    // End/Highscore Function (called on line 81) //
 function rollCredits(){
     questionEl.style.display = "none"
     choicesEl.style.display = "none"
