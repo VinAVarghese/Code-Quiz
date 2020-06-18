@@ -257,6 +257,7 @@ function rollCredits(){
 
     var ul = document.createElement("ul")
     ul.classList.add("col-md-6")
+    ul.classList.add("topThree")
     var liOne = document.createElement("li")
     liOne.textContent = ((leaderboard[0])["player"] + " " + (leaderboard[0])["playerScore"])
     var liTwo = document.createElement("li")

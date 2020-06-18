@@ -1,12 +1,65 @@
+body {
+    
+    background-color: #abc0f3;
+    
+}
+
 header {
     text-align: center;
+}
+
+#scoreEl {
+    color: #243155
+}
+
+#timerEl {
+    color: #243155
+}
+
+#questionNumEl {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-emphasis: bold;
+    color:#243155;
+    text-shadow: 1px 1px 4px grey;
+}
+
+.mainsec {
+    background-image: url(andy-holmes-rCbdp8VCYhQ-unsplash-min.jpg);
+    /* photo by Andy Holmes on Unsplash */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 60%;
+    border: #243155 solid;
+    padding-top: 10px;
 }
 
 #questionEl {
     padding-right: 50px;
     text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: white;
+    text-shadow: 1px 1px 4px black;
+}
+
+.topThree, #rulesEl {
+    padding-left: 50px;
+}
+
+li {
+    color: white;
+    text-shadow: 1px 1px 4px black;
+}
+
+label {
+    color: white;
+    text-shadow: 1px 1px 4px black;
+}
+
+button {
+    background-color: #8ca7e4;
 }
 
 #timerCountdown {
     text-align: center;
+    color: #243155;
 }
