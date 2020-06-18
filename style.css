@@ -45,6 +45,15 @@ header {
     padding-left: 50px;
 }
 
+.youreFirst {
+    color: white;
+    text-shadow: 1px 1px 4px black;
+    text-align: center;
+    font-size: xx-large;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding-right: 50px;
+}
+
 li {
     color: white;
     text-shadow: 1px 1px 4px black;

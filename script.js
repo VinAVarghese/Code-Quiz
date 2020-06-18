@@ -237,7 +237,7 @@ function rollCredits(){
     restartBtn.style.display = "block"
     restartBtn.classList.add("d-flex")
     questionNumberEl.textContent = (initials + " " + score)
-    questionEl.textContent = ("The Leaderboard")
+    questionEl.textContent = ("Highscores")
     choicesEl.style.display = "none"
 
     var pastPlayers = JSON.parse(localStorage.getItem("players"))
@@ -250,7 +250,14 @@ function rollCredits(){
         for(var l=0 ; l<pastPlayers.length; l++){
             leaderboard.push(pastPlayers[l])
         }
+    } else {
+        var first = document.createElement("h4")
+        first.classList.add("col-md-6")
+        first.classList.add("youreFirst")
+        first.textContent = ("You're First To Play!")
+        questionEl.insertAdjacentElement("afterend", first)
     }
+
     localStorage.setItem("players",JSON.stringify(leaderboard))
 
     leaderboard.sort((a,b)=>(a.playerScore < b.playerScore) ? 1 : -1)
@@ -262,11 +269,14 @@ function rollCredits(){
     liOne.textContent = ((leaderboard[0])["player"] + " " + (leaderboard[0])["playerScore"])
     var liTwo = document.createElement("li")
     liTwo.textContent = ((leaderboard[1])["player"] + " " + (leaderboard[1])["playerScore"])
-    var liThree = document.createElement("li")
-    liThree.textContent = ((leaderboard[2])["player"] + " " + (leaderboard[2])["playerScore"])
     ul.appendChild(liOne)
     ul.appendChild(liTwo)
+    if (leaderboard[2] != null){
+    var liThree = document.createElement("li")
+    liThree.textContent = ((leaderboard[2])["player"] + " " + (leaderboard[2])["playerScore"])
     ul.appendChild(liThree)
+    }
+
     questionEl.insertAdjacentElement("afterend", ul)
     
 }
