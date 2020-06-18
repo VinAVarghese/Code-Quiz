@@ -271,18 +271,7 @@ function rollCredits(){
     questionNumberEl.textContent = (initials + " " + score)
     questionEl.textContent = ("The Leaderboard")
     choicesEl.style.display = "none"
-    var ul = document.createElement("ul")
-    ul.classList.add("col-md-6")
-    var liOne = document.createElement("li")
-    liOne.textContent = ("First")
-    var liTwo = document.createElement("li")
-    liTwo.textContent = ("Second")
-    var liThree = document.createElement("li")
-    liThree.textContent = ("Third")
-    ul.appendChild(liOne)
-    ul.appendChild(liTwo)
-    ul.appendChild(liThree)
-    questionEl.insertAdjacentElement("afterend", ul)
+
     var pastPlayers = JSON.parse(localStorage.getItem("players"))
     var currentPlayer = {
         player:initials,
@@ -295,16 +284,25 @@ function rollCredits(){
         }
     }
     localStorage.setItem("players",JSON.stringify(leaderboard))
-    var allPlayers = JSON.parse(localStorage.getItem("players"))
-    console.log(leaderboard);
-    console.log(localStorage);
-    console.log(allPlayers);
-    
+
+    leaderboard.sort((a,b)=>(a.playerScore < b.playerScore) ? 1 : -1)
+
+    var ul = document.createElement("ul")
+    ul.classList.add("col-md-6")
+    var liOne = document.createElement("li")
+    liOne.textContent = ((leaderboard[0])["player"] + " " + (leaderboard[0])["playerScore"])
+    var liTwo = document.createElement("li")
+    liTwo.textContent = ((leaderboard[1])["player"] + " " + (leaderboard[1])["playerScore"])
+    var liThree = document.createElement("li")
+    liThree.textContent = ((leaderboard[2])["player"] + " " + (leaderboard[2])["playerScore"])
+    ul.appendChild(liOne)
+    ul.appendChild(liTwo)
+    ul.appendChild(liThree)
+    questionEl.insertAdjacentElement("afterend", ul)
     
 }
 
 // TODO: 
-// show top 5 scores (getItem from localStorage)
 // fancy up up the css
 
 
