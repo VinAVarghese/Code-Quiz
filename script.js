@@ -38,6 +38,7 @@ var questionEl = document.querySelector("#questionEl")
 var rulesEl = document.querySelector("#rulesEl")
 var choicesEl = document.querySelector("#choicesEl")
 var submitBtn = document.querySelector("#submitBtn")
+var restartBtn = document.querySelector("#restartBtn")
 var scoreEl = document.querySelector("#scoreEl")
 var timerEl = document.querySelector("#timerEl")
 var choiceOne = document.querySelector("#choice1")
@@ -61,10 +62,13 @@ var quizTime = 60;
 var q = 0;
 var h = -1;
 var questionCount = 0;
-var leaderboard = []
+var leaderboard = [];
+var answer;
 
     // Reset Function On Page Load //
 function resetQuiz() {
+    restartBtn.classList.remove("d-flex")
+    restartBtn.style.display = "none"
     submitBtn.style.display = "none"
     choicesEl.style.display = "none"
 };
@@ -97,13 +101,13 @@ startBtn.addEventListener("click", function () {
     , 1000);
 });
 
-    // Quiz Timer Function (called on line 87) //
+    // Quiz Timer Function & End Quiz Function (called on line 87) //
 function quizTimer() {
     var timeInterval = setInterval(function() {
       timerEl.textContent = "Time Left: " + quizTime ;
       quizTime--;
   
-      if (quizTime <= 0) {
+      if (quizTime <= 0 || questionCount === 5) {
         clearInterval(timeInterval);
         timerEl.textContent = "Time Left: 0";
         rollCredits();
@@ -192,7 +196,6 @@ function askQuestions(){
     h++;
     questionNumberEl.textContent = ("Question " + q)
     var i = ranNums[h]
-    questionSets[i]
     theQuestionSet = questionSets[i]
     var question = Object.values(theQuestionSet)[0]
     questionEl.textContent = (question)
@@ -205,7 +208,7 @@ function askQuestions(){
     radio3.value = (choicesArray[2])
     choiceFour.textContent = (choicesArray[3])
     radio4.value = (choicesArray[3])
-    var answer = Object.values(theQuestionSet)[2]
+    answer = Object.values(theQuestionSet)[2]
     
     if (choicesArray[2] === undefined) {
         radioThree.style.display = "none"
@@ -217,27 +220,28 @@ function askQuestions(){
     } else {
         radioFour.style.display = "block"
     }
-
-    submitBtn.addEventListener("click", function(){
-        var userChoice = document.querySelector("input[type = radio]:checked");
-        if (userChoice.value === answer) {
-            score = score + 100;
-            console.log("Right!");
-            rightHighlight(body);
-        } else {
-            quizTime = quizTime - 10;
-            console.log("Incorrect!");
-            wrongHighlight(body);
-        }
-
-        scoreEl.textContent = "Your Score: " + score 
-        
-        questionCount++;
-        if(questionCount === 5){
-            rollCredits();
-        }
-    })
 }
+
+submitBtn.addEventListener("click", function(){
+    var userChoice = document.querySelector("input[type = radio]:checked");
+    if (userChoice.value === answer) {
+        score = score + 100;
+        console.log("Right!");
+        rightHighlight(body);
+    } else {
+        quizTime = quizTime - 10;
+        console.log("Incorrect!");
+        wrongHighlight(body);
+    }
+
+    scoreEl.textContent = "Your Score: " + score 
+    
+    questionCount++;
+
+    if (questionCount <= 4){
+        askQuestions()
+    }
+})
 
     // Right & Wrong Effect Function //
 function wrongHighlight(body){
@@ -257,27 +261,49 @@ function rightHighlight(body){
 
     // End/Highscore Function //
 function rollCredits(){
-    console.log("rollCredits");
-    // var initials = prompt("Enter your initials for the leaderboard.")
-    // submitBtn.classList.remove("d-flex")
-    // submitBtn.style.display = "none"
-    // questionNumberEl.textContent = (initials + " " + score)
-    // questionEl.textContent = ("The Leaderboard")
-    // radioOne.style.display = "none"
-    // radioTwo.style.display = "none"
-    // radioThree.style.display = "none"
-    // radioFour.style.display = "none"
-    // var leader = questionEl.append("h4")
-    // leader.textContent("test")
-    // localStorage.setItem(initials,score)
+    questionEl.style.display = "none"
+    choicesEl.style.display = "none"
+    var initials = prompt("Enter your initials for the leaderboard.")
+    submitBtn.classList.remove("d-flex")
+    submitBtn.style.display = "none"
+    restartBtn.style.display = "block"
+    restartBtn.classList.add("d-flex")
+    questionNumberEl.textContent = (initials + " " + score)
+    questionEl.textContent = ("The Leaderboard")
+    choicesEl.style.display = "none"
+    var ul = document.createElement("ul")
+    ul.classList.add("col-md-6")
+    var liOne = document.createElement("li")
+    liOne.textContent = ("First")
+    var liTwo = document.createElement("li")
+    liTwo.textContent = ("Second")
+    var liThree = document.createElement("li")
+    liThree.textContent = ("Third")
+    ul.appendChild(liOne)
+    ul.appendChild(liTwo)
+    ul.appendChild(liThree)
+    questionEl.insertAdjacentElement("afterend", ul)
+    var pastPlayers = JSON.parse(localStorage.getItem("players"))
+    var currentPlayer = {
+        player:initials,
+        playerScore:score 
+    }
+    leaderboard.push(currentPlayer)
+    if (pastPlayers != null){
+        for(var l=0 ; l<pastPlayers.length; l++){
+            leaderboard.push(pastPlayers[l])
+        }
+    }
+    localStorage.setItem("players",JSON.stringify(leaderboard))
+    var allPlayers = JSON.parse(localStorage.getItem("players"))
+    console.log(leaderboard);
+    console.log(localStorage);
+    console.log(allPlayers);
+    
     
 }
 
 // TODO: 
-// highScore() function that will stop asking questions and go to end highscore screen/display
-    // prompt for intials 
-    // send initials and score to localStorage (setItem to localStoreage)
-    // show current user's score
 // show top 5 scores (getItem from localStorage)
 // fancy up up the css
 
