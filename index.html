@@ -8,29 +8,75 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="container">
-    <header class="row justify-content-center">
-        <div class="col-sm-6">
-            <h1>Welcome To The JS Quiz!</h1>
+    <header>
+        <div class="row justify-content-center">
+            <div class="col-sm-6 d-flex justify-content-start">
+                <p id="scoreEl">Your Score: 0</p>
+            </div>
+            <div class="col-sm-6 d-flex justify-content-end">
+                <p id="timerEl">Time Left: 60</p>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row justify-content-center">
+            <div class="col-sm-6">
+                <h1 id="questionNumEl">Welcome To The JS Quiz!</h1>
+            </div>
         </div>
     </header>
     <br>
     <main>
-        <div class="row justify-content-center">
-            <h2 class="col-md-3">The Rules</h2>
-            <ul class="col-md-4">
+        <div class="row">
+            <h2 class="col-md-6 d-flex align-items-center justify-content-md-end justify-content-center" id="questionEl">The Rules</h2>
+            
+            <ul class="col-md-6" id="rulesEl">
                 <li>This is a timed quiz on JavaScript</li> 
-                <li>There are 10 multiple choice questions</li>
-                <li>For every question you get right, you get 10 points!</li>
+                <li>There are 5 multiple choice questions</li>
+                <li>For every question you get right, you get 100 points!</li>
                 <li>For every incorrect question, you lose time.</li>
                 <li>Have fun! It's a rule.</li>
             </ul>
+
+            <ul class="col-md-6" id="choicesEl">
+                <div class="form-check" id="radio1">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="Radios1" value="option1">
+                    <label class="form-check-label" for="exampleRadios1" id="choice1">
+                    
+                    </label>
+                </div>
+                <div class="form-check" id="radio2">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="Radios2" value="option2">
+                    <label class="form-check-label" for="exampleRadios2" id="choice2">
+                        
+                    </label>
+                </div>
+                <div class="form-check" id="radio3">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="Radios3" value="option3">
+                    <label class="form-check-label" for="exampleRadios3" id="choice3">
+                        
+                    </label>
+                </div>
+                <div class="form-check" id="radio4">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="Radios4" value="option4">
+                    <label class="form-check-label" for="exampleRadios4" id="choice4">
+                        
+                    </label>
+                </div>
+            </ul>
         </div>
+        
         <br>
-        <div class="row justify-content-center">
-            <button class="col-sm-4" id="startBtn">Start Quiz</button>
+
+        <div class="row justify-content-center" id="startBtn">
+            <button class="col-4">Start Quiz</button>
+        </div>
+        <div class="row justify-content-center" id="submitBtn">
+            <button class="col-4">Submit</button>
         </div>
         <div class="row justify-content-center">
-            <div class="col-sm-4">
+            <div class="col-4">
                 <h3 id="timerCountdown"></h3>
             </div>
         </div>

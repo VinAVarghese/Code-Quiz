@@ -2,11 +2,9 @@ header {
     text-align: center;
 }
 
-main div h2 {
+#questionEl {
+    padding-right: 50px;
     text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: right;
 }
 
 #timerCountdown {
